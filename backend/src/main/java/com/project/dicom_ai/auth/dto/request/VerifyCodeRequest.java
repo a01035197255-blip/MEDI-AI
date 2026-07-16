@@ -1,0 +1,15 @@
+package com.project.dicom_ai.auth.dto.request;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+
+@Getter
+public class VerifyCodeRequest {
+    @NotBlank(message = "phone is required")
+    private String phone;
+    @NotBlank(message = "code is required")
+    @Pattern(regexp = "^\\d{6}$",
+            message = "code must be 6 digits")
+    private String code;
+}
