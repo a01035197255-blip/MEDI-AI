@@ -12,7 +12,7 @@ phases:
     commands:
       - cd ..
       - mkdir -p deploy-backend
-      - cp backend/build/libs/InterviewMate-app.jar deploy-backend/
+      - cp backend/build/libs/DICOM_AI-0.0.1-SNAPSHOT.jar deploy-backend/
       - cp backend/Procfile deploy-backend/
       - mkdir -p deploy-backend/.platform/nginx/conf.d
       - "echo 'proxy_connect_timeout 180s;' > deploy-backend/.platform/nginx/conf.d/custom-timeout.conf"
