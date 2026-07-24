@@ -6,12 +6,11 @@ import com.project.dicom_ai.common.exception.BusinessException;
 import com.project.dicom_ai.common.exception.ErrorCode;
 import com.project.dicom_ai.common.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.NullMarked;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-@NullMarked
+
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
