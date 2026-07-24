@@ -10,10 +10,16 @@ public class BackendApplication {
 
 	static {
 		try {
-			// 프로젝트 루트 기준 libs 폴더 안의 dll 절대 경로를 가져옵니다.
-			String dllPath = new File("backend/libs/opencv_java.dll").getAbsolutePath();
-			System.load(dllPath);
-			System.out.println("====== [성공] OpenCV Native Library (.dll) 로드 완료 ======");
+			String os = System.getProperty("os.name").toLowerCase();
+
+			if (os.contains("win")) {
+				String dllPath = new File("backend/libs/opencv_java.dll").getAbsolutePath();
+				System.load(dllPath);
+				System.out.println("====== [성공] OpenCV Native Library (.dll) 로드 완료 ======");
+			} else {
+				System.out.println("Linux 환경입니다. OpenCV DLL 로드를 건너뜁니다.");
+			}
+
 		} catch (UnsatisfiedLinkError e) {
 			System.err.println("OpenCV Native Library 로드 실패: " + e.getMessage());
 		}
