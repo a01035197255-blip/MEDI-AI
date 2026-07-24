@@ -18,6 +18,7 @@ import com.project.dicom_ai.study.entity.Status;
 import com.project.dicom_ai.study.entity.Study;
 import com.project.dicom_ai.study.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.dcm4che3.data.Attributes;
 import org.dcm4che3.io.DicomInputStream;
@@ -44,6 +45,9 @@ import java.util.zip.ZipInputStream;
 @RequiredArgsConstructor
 @Transactional
 public class DicomFileService {
+
+    @Value("${file.upload-dir}")
+    private String baseDir;
 
     private final PatientRepository patientRepository;
     private final StudyRepository studyRepository;
@@ -86,7 +90,6 @@ public class DicomFileService {
         // =========================
         // 1. 파일 저장
         // =========================
-        String baseDir = "C:/Users/TJ/Desktop/dicom";
         File dir = new File(baseDir);
         if (!dir.exists()) dir.mkdirs();
 
