@@ -4,6 +4,7 @@ import com.project.dicom_ai.auth.domain.Role;
 import com.project.dicom_ai.auth.domain.User;
 import com.project.dicom_ai.common.exception.BusinessException;
 import com.project.dicom_ai.common.exception.ErrorCode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import com.project.dicom_ai.auth.repository.UserRepository;
@@ -22,6 +23,9 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
+
+    @Value("${app.frontend-url}")
+    private String frontendUrl;
 
     private final JwtProvider jwtProvider;
     private final UserRepository userRepository;
@@ -64,7 +68,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
                 Duration.ofDays(7)
         );
 
-        String redirectUrl = "http://localhost:3000/oauth2/redirect"
+        String redirectUrl = frontendUrl + "/oauth2/redirect"
                 + "?accessToken=" + accessToken
                 + "&refreshToken=" + refreshToken;
 
