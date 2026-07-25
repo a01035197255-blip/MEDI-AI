@@ -64,9 +64,10 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
                 Duration.ofDays(7)
         );
 
-        String redirectUrl = "http://localhost:3000/oauth2/redirect"
-                + "?accessToken=" + accessToken
-                + "&refreshToken=" + refreshToken;
+        String redirectUrl =
+                "http://MEDIAI-env-1.eba-pfkrsuzy.ap-northeast-2.elasticbeanstalk.com/oauth2/redirect"
+                        + "?accessToken=" + accessToken
+                        + "&refreshToken=" + refreshToken;
 
         response.sendRedirect(redirectUrl);
     }
