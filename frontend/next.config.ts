@@ -1,18 +1,16 @@
 import type { NextConfig } from "next";
 import type { Configuration } from "webpack";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+
 const nextConfig: NextConfig = {
     reactStrictMode: false,
 
     async rewrites() {
         return [
             {
-                source: "/orthanc/:path*",
-                destination: "http://localhost:8042/:path*",
-            },
-            {
                 source: "/api/:path*",
-                destination: "http://localhost:8080/api/:path*",
+                destination: `${API_URL}/api/:path*`,
             },
         ];
     },
