@@ -156,6 +156,7 @@ export default function ViewportGrid({
                                 key={viewportId}
                                 layout={layout}
                                 id={viewportId}
+                                index={i}
                                 viewportId={viewportId}
                                 viewportType={currentViewportType}
                                 imageIds={imageIds}
