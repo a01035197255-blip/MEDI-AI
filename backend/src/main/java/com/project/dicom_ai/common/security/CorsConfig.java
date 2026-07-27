@@ -18,7 +18,9 @@ public class CorsConfig {
 
         // 프론트 주소 (Next.js)
         config.setAllowedOrigins(List.of(
-                "http://localhost:3000"
+                "http://localhost:3000",
+                "https://leejinoh.store",
+                "https://www.leejinoh.store"
         ));
 
         // 허용 메서드
