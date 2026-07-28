@@ -7,6 +7,7 @@ import org.dcm4che3.data.Tag;
 import org.dcm4che3.imageio.plugins.dcm.DicomImageReader;
 import org.dcm4che3.imageio.plugins.dcm.DicomImageReadParam;
 import org.dcm4che3.io.DicomInputStream;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -20,12 +21,13 @@ import java.util.Iterator;
 @Service
 public class DicomImageConverter {
 
-    private static final String PNG_DIR = "C:/Users/TJ/Desktop/dicom/png";
+    @Value("${file.png-dir}")
+    private String pngDir;
 
     public String convertToPng(String dicomPath) {
 
         try {
-            dicomPath = decompressDicom(dicomPath);
+            // dicomPath = decompressDicom(dicomPath);
 
             File dicomFile = new File(dicomPath);
 
@@ -33,13 +35,13 @@ public class DicomImageConverter {
                 throw new BusinessException(ErrorCode.DICOM_NOT_FOUND);
             }
 
-            File dir = new File(PNG_DIR);
+            File dir = new File(pngDir);
             if (!dir.exists()) dir.mkdirs();
 
             String fileName = dicomFile.getName()
                     .replace("_raw.dcm", ".png")
                     .replace(".dcm", ".png");
-            String pngPath = PNG_DIR + "/" + fileName;
+            String pngPath = pngDir + "/" + fileName;
 
             // =========================
             // 1. DICOM Metadata 읽기
